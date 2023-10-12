@@ -10,5 +10,8 @@
 		<h3><%=comment.comment%> was said by <%=comment.username%></h3>
 		<a href="/comments">back to all comments</a>
 		<a href="/comments/<%=comment.id%>/edit">edit</a>
+		<form action="/comments/<%=comment.id%>/?_method=DELETE" method="post">
+			<button>delete</button>
+		</form>
 	</body>
 </html>

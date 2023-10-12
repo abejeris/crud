@@ -32,7 +32,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
 
-const comments = [
+let comments = [
 	{ id: uuidv4(), username: 'todd', comment: 'hahaha so funny' },
 	{ id: uuidv4(), username: 'antanas', comment: 'NU KA TU KAIMIETi' },
 	{ id: uuidv4(), username: 'John', comment: 'I AM Bon jovi' },
@@ -77,6 +77,12 @@ app.get('/comments/:id/edit', (req, res) => {
 	const { id } = req.params;
 	const comment = comments.find((c) => c.id === id);
 	res.render('comments/edit', { comment });
+});
+
+app.delete('/comments/:id', (req, res) => {
+	const { id } = req.params;
+	comments = comments.filter((c) => c.id !== id);
+	res.redirect('/comments');
 });
 
 app.listen(3000, () => {
